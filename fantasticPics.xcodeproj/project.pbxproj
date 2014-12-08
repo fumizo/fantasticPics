@@ -432,6 +432,7 @@
 				4F0A32BA1A35EEF600147905 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4F0A32BB1A35EEF600147905 /* Build configuration list for PBXNativeTarget "fantasticPicsTests" */ = {
 			isa = XCConfigurationList;
@@ -440,6 +441,7 @@
 				4F0A32BD1A35EEF600147905 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
