@@ -14,104 +14,67 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     
-    [super viewDidLoad];
-    //デバイス取得
-    AVCaptureDevice* device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    //入力作成
-    AVCaptureDeviceInput* deviceInput = [AVCaptureDeviceInput deviceInputWithDevice:device error:NULL];
-    
-    //ビデオデータ出力作成
-    NSDictionary* settings = @{(id)kCVPixelBufferPixelFormatTypeKey:[NSNumber numberWithInt:kCVPixelFormatType_32BGRA]};
-    AVCaptureVideoDataOutput* dataOutput = [[AVCaptureVideoDataOutput alloc] init];
-    dataOutput.videoSettings = settings;
-    [dataOutput setSampleBufferDelegate:self queue:dispatch_get_main_queue()];
-    
-    //セッション作成
-    self.session = [[AVCaptureSession alloc] init];
-    [self.session addInput:deviceInput];
-    [self.session addOutput:dataOutput];
-    self.session.sessionPreset = AVCaptureSessionPresetHigh;
-    
-    AVCaptureConnection *videoConnection = NULL;
-    
-    // カメラの向きなどを設定する
-    [self.session beginConfiguration];
-    
-    for ( AVCaptureConnection *connection in [dataOutput connections] )
-    {
-        for ( AVCaptureInputPort *port in [connection inputPorts] )
-        {
-            if ( [[port mediaType] isEqual:AVMediaTypeVideo] )
-            {
-                videoConnection = connection;
-                
-            }
-        }
-    }
-    if([videoConnection isVideoOrientationSupported]) // **Here it is, its always false**
-    {
-        [videoConnection setVideoOrientation:AVCaptureVideoOrientationPortrait];
+    [self showUIImagePicker];
+}
+
+- (void)showUIImagePicker
+{
+    // カメラが使用可能かどうか判定する
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        return;
     }
     
-    [self.session commitConfiguration];
-    // セッションをスタートする
-    [self.session startRunning];
+    // UIImagePickerControllerのインスタンスを生成
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    
+    // デリゲートを設定
+    imagePickerController.delegate = self;
+    
+    // 画像の取得先をカメラに設定
+    imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+    
+    // 画像取得後に編集するかどうか（デフォルトはNO）
+    imagePickerController.allowsEditing = YES;
+    
+    // 撮影画面をモーダルビューとして表示する
+    [self presentViewController:imagePickerController animated:YES completion:nil];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-//delegateメソッド。各フレームにおける処理
-- (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection
+// 画像が選択された時に呼ばれるデリゲートメソッド
+- (void)imagePickerController:(UIImagePickerController *)picker
+        didFinishPickingImage:(UIImage *)image
+                  editingInfo:(NSDictionary *)editingInfo
 {
-    // 画像の表示
-    self.imageView.image = [self imageFromSampleBufferRef:sampleBuffer];
+    // モーダルビューを閉じる
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    // 渡されてきた画像をフォトアルバムに保存
+    UIImageWriteToSavedPhotosAlbum(image, self, @selector(targetImage:didFinishSavingWithError:contextInfo:), NULL);
 }
 
-// CMSampleBufferRefをUIImageへ
-- (UIImage *)imageFromSampleBufferRef:(CMSampleBufferRef)sampleBuffer
+// 画像の選択がキャンセルされた時に呼ばれるデリゲートメソッド
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    // イメージバッファの取得
-    CVImageBufferRef    buffer;
-    buffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+    // モーダルビューを閉じる
+    [self dismissViewControllerAnimated:YES completion:nil];
     
-    // イメージバッファのロック
-    CVPixelBufferLockBaseAddress(buffer, 0);
-    // イメージバッファ情報の取得
-    uint8_t*    base;
-    size_t      width, height, bytesPerRow;
-    base = CVPixelBufferGetBaseAddress(buffer);
-    width = CVPixelBufferGetWidth(buffer);
-    height = CVPixelBufferGetHeight(buffer);
-    bytesPerRow = CVPixelBufferGetBytesPerRow(buffer);
-    
-    // ビットマップコンテキストの作成
-    CGColorSpaceRef colorSpace;
-    CGContextRef    cgContext;
-    colorSpace = CGColorSpaceCreateDeviceRGB();
-    cgContext = CGBitmapContextCreate(
-                                      base, width, height, 8, bytesPerRow, colorSpace,
-                                      kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
-    CGColorSpaceRelease(colorSpace);
-    
-    // 画像の作成
-    CGImageRef  cgImage;
-    UIImage*    image;
-    cgImage = CGBitmapContextCreateImage(cgContext);
-    image = [UIImage imageWithCGImage:cgImage scale:1.0f
-                          orientation:UIImageOrientationUp];
-    CGImageRelease(cgImage);
-    CGContextRelease(cgContext);
-    
-    // イメージバッファのアンロック
-    CVPixelBufferUnlockBaseAddress(buffer, 0);
-    return image;
+    // キャンセルされたときの処理を記述・・・
+}
+
+// 画像の保存完了時に呼ばれるメソッド
+- (void)targetImage:(UIImage *)image
+didFinishSavingWithError:(NSError *)error
+        contextInfo:(void *)context
+{
+    if (error) {
+        // 保存失敗時の処理
+    } else {
+        // 保存成功時の処理
+    }
 }
 
 @end

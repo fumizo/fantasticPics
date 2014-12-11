@@ -78,14 +78,10 @@
 		4F0A328C1A35EEF600147905 = {
 			isa = PBXGroup;
 			children = (
-				4F0A32C61A35EF5A00147905 /* MobileCoreServices.framework */,
-				4F0A32C41A35EF4D00147905 /* QuartzCore.framework */,
-				4F0A32C21A35EF4000147905 /* CoreMedia.framework */,
-				4F0A32C01A35EF3200147905 /* CoreVideo.framework */,
-				4F0A32BE1A35EF2400147905 /* AVFoundation.framework */,
 				4F0A32971A35EEF600147905 /* fantasticPics */,
 				4F0A32B11A35EEF600147905 /* fantasticPicsTests */,
 				4F0A32961A35EEF600147905 /* Products */,
+				4F7A3CEF1A39E36600465A61 /* frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -137,6 +133,18 @@
 				4F0A32B31A35EEF600147905 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4F7A3CEF1A39E36600465A61 /* frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4F0A32C61A35EF5A00147905 /* MobileCoreServices.framework */,
+				4F0A32C41A35EF4D00147905 /* QuartzCore.framework */,
+				4F0A32C21A35EF4000147905 /* CoreMedia.framework */,
+				4F0A32C01A35EF3200147905 /* CoreVideo.framework */,
+				4F0A32BE1A35EF2400147905 /* AVFoundation.framework */,
+			);
+			path = frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

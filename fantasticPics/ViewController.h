@@ -7,12 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AVFoundation/AVFoundation.h>
 
-@interface ViewController : UIViewController<AVCaptureVideoDataOutputSampleBufferDelegate>
-
-@property (nonatomic, strong) AVCaptureSession* session;
-@property (nonatomic, strong) IBOutlet UIImageView* imageView;
+@interface ViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @end
 
