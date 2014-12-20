@@ -7,8 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
-@interface ViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+#import "DBCameraViewController.h"
+#import "DBCameraContainerViewController.h"
+
+
+@interface ViewController : UIViewController <DBCameraViewControllerDelegate>{
+    IBOutlet UIImageView *imageView;
+}
+
+-(IBAction)openingCamera ;
 
 @end
 
