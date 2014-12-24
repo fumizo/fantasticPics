@@ -53,8 +53,8 @@
 		4F0A32C21A35EF4000147905 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		4F0A32C41A35EF4D00147905 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4F0A32C61A35EF5A00147905 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		4F8F70101A459ABE002AAC95 /* StampViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StampViewController.h; sourceTree = "<group>"; };
-		4F8F70111A459ABE002AAC95 /* StampViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StampViewController.m; sourceTree = "<group>"; };
+		4F8F70101A459ABE002AAC95 /* StampViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StampViewController.h; path = ../StampViewController.h; sourceTree = "<group>"; };
+		4F8F70111A459ABE002AAC95 /* StampViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StampViewController.m; path = ../StampViewController.m; sourceTree = "<group>"; };
 		C303F74F678D169E28779ECB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D8063E9712DF391DC90CF6FD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -95,8 +95,6 @@
 		4F0A328C1A35EEF600147905 = {
 			isa = PBXGroup;
 			children = (
-				4F8F70101A459ABE002AAC95 /* StampViewController.h */,
-				4F8F70111A459ABE002AAC95 /* StampViewController.m */,
 				4F0A32971A35EEF600147905 /* fantasticPics */,
 				4F0A32B11A35EEF600147905 /* fantasticPicsTests */,
 				4F0A32961A35EEF600147905 /* Products */,
@@ -122,6 +120,8 @@
 				4F0A329D1A35EEF600147905 /* AppDelegate.m */,
 				4F0A329F1A35EEF600147905 /* ViewController.h */,
 				4F0A32A01A35EEF600147905 /* ViewController.m */,
+				4F8F70101A459ABE002AAC95 /* StampViewController.h */,
+				4F8F70111A459ABE002AAC95 /* StampViewController.m */,
 				4F0A32A21A35EEF600147905 /* Main.storyboard */,
 				4F0A32A51A35EEF600147905 /* Images.xcassets */,
 				4F0A32A71A35EEF600147905 /* LaunchScreen.xib */,

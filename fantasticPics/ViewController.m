@@ -19,6 +19,8 @@
 {
     [super viewDidAppear:animated];
     
+    [self barButtonCustom];
+    
     /*
     //デバイス取得
     AVCaptureDevice* device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
@@ -86,7 +88,7 @@
 {
     imageView.image = image;
     
-    
+    //スタンプビューに遷移するよ
     StampViewController *stampVC = [self.storyboard instantiateViewControllerWithIdentifier:@"stamp"];
     
 //    stampVC.photoView.image = image;
@@ -100,6 +102,13 @@
 - (void) dismissCamera:(id)cameraViewController{
     [self dismissViewControllerAnimated:YES completion:nil];
     [cameraViewController restoreFullScreenMode];
+}
+
+- (void) barButtonCustom{
+    //navのbackのボタンをカスタムする
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] init];
+    barButton.title = @"TOPへ";
+    self.navigationItem.backBarButtonItem = barButton;
 }
 
 /*

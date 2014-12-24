@@ -15,4 +15,7 @@
 @property IBOutlet UIImageView * photoView;
 @property (nonatomic) UIImage *photoImage;
 
+-(IBAction)saveImage;
+-(IBAction)goNext;
+
 @end
